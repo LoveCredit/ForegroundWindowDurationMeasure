@@ -41,9 +41,9 @@ public class GUI {
                 ForegroundCheck.gUIActive = false;
                 HashMap<String, Double> usedWindowWithThreshold = new HashMap<>();
                 ForegroundCheck.usedWindows.forEach((k, v) -> {
-                    //if (v > 0.04) {
+                    if (v > 0.4) {
                         usedWindowWithThreshold.put(k, v);
-                    //}
+                    }
                 });
                 if (!usedWindowWithThreshold.isEmpty()) IOExcel.saveAsExcelFile(usedWindowWithThreshold);
                 e.getWindow().dispose();

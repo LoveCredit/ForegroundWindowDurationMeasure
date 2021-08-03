@@ -3,12 +3,9 @@ package com.lovecredit;
 import com.sun.jna.Native;
 import com.sun.jna.PointerType;
 import com.sun.jna.platform.win32.WinDef;
-import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.win32.StdCallLibrary;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import static java.util.Objects.isNull;
 
@@ -56,7 +53,6 @@ public class ForegroundCheck {
         byte[] windowText = new byte[512];
         double waitDuration = 100;
         int sleepDuration = 100;
-        IntByReference intByReference = new IntByReference();
         GUI gui = GUI.getInstance();
         while (gUIActive) {
             PointerType foregroundWindow = User32.INSTANCE.GetForegroundWindow();
@@ -77,17 +73,5 @@ public class ForegroundCheck {
         User32 INSTANCE = (User32) Native.loadLibrary("user32", User32.class);
         WinDef.HWND GetForegroundWindow();
         int GetWindowTextA(PointerType hWnd, byte[] lpString, int nMaxCount);
-        int GetWindowThreadProcessId(WinDef.HWND hWnd, IntByReference lpdwProcessId);
     }
-
-    /*int pid = User32.INSTANCE.GetWindowThreadProcessId(User32.INSTANCE.GetForegroundWindow(), intByReference);
-            System.out.println(ProcessList.getProcessForPID(String.valueOf(pid)));
-    Map<Integer, List<WinDef.HWND>> map = Win32NativeProcessWrapper.getWindowProcessMap();
-            map.forEach((k, v) -> {
-        System.out.println(k);
-        v.forEach(listEntry -> {
-            System.out.println(Win32NativeProcessWrapper.getNameForWindow(listEntry));
-        });
-    });
-            System.out.println(map.get(map.keySet().stream().filter(k -> k == pid).findFirst().get()));*/
 }

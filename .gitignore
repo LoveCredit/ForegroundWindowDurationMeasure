@@ -2,7 +2,10 @@
 /shelf/
 /workspace.xml
 /target/
+/tryout/
+output/
 */target/**
+*/tryout/**
 *.class
 *.jar
 *.war
